@@ -26,7 +26,11 @@ async function loginUser(req, res, next) {
         expiresIn: "5d",
       });
 
-      return res.json({ auth: true, token, user: { id, username, faculty, department, level } });
+      return res.json({
+        auth: true,
+        token,
+        user: { id, username, faculty, department, level },
+      });
     } else {
       throw new Error("Invalid Password");
     }
@@ -54,16 +58,16 @@ async function registerUser(req, res, next) {
 
     debug(user);
 
-    const newUser = await user.save()
+    const newUser = await user.save();
 
-    res.json(newUser)
+    res.json(newUser);
   } catch (error) {
-    next(error)
+    next(error);
   }
 }
 
-async function getUserBooks(req, res, next) {
+// async function getUserBooks(req, res, next) {
 
-}
+// }
 
 module.exports = router;
