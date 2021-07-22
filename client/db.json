@@ -1,0 +1,212 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 1",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "2",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 2",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "3",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 3",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "4",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 4",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "5",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 5",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "6",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 6",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "7",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 7",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "8",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 8",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "9",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 9",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "10",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 10",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "11",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 11",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "id": "12",
+      "title": "Pascal",
+      "author": "Nnamdi Azikiwe 12",
+      "postedBy": "christian.ey",
+      "faculty": "Physical Science",
+      "department": "Computer Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com"
+    },
+    {
+      "title": "Ejiofor",
+      "author": "Tafawa Balewa",
+      "postedBy": "christian.eeeeeey",
+      "faculty": "Life Science",
+      "department": "Biomedical Science",
+      "tags": [
+        "coding",
+        "programming",
+        "ancient",
+        "history"
+      ],
+      "coverImgUrl": "www.google.com",
+      "bookUrl": "wwww.book.google.com",
+      "id": "PhbppeH"
+    }
+  ]
+}

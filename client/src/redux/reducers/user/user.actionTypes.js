@@ -1,0 +1,9 @@
+const actionTypes = {
+  USER_LOAD_START: "USER_LOAD_START",
+  USER_LOAD_SUCCESS: "USER_LOAD_SUCCESS",
+  USER_LOAD_ERROR: "USER_LOAD_ERROR",
+  USER_UNLOAD: "USER_UNLOAD",
+  USER_LOAD: "USER_LOAD"
+}
+
+export default actionTypes
