@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  makeStyles,
-  Typography,
-  Tabs,
-  Tab,
-} from "@material-ui/core";
+import { Box, makeStyles, Typography, Tabs, Tab } from "@material-ui/core";
 import UploadBook from "../../components/uploadBook/uploadBook.component.";
 import UploadedBooks from "../../components/uploadedBooks/uploadedBooks.component";
 import { useSelector } from "react-redux";
@@ -43,7 +37,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
+      {value === index ? <Box p={3}>{children}</Box> : null}
     </div>
   );
 }
@@ -59,9 +53,8 @@ const ProfilePage = () => {
     setValue(newValue);
   };
 
-
-  if( !user ) {
-    return <Redirect to="/books" />
+  if (!user) {
+    return <Redirect to="/books" />;
   }
 
   return (

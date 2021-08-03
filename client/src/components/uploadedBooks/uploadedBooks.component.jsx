@@ -9,16 +9,28 @@ import {
   TableHead,
   Box,
   Paper,
-  Checkbox
+  Checkbox,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
+import Edit from "@material-ui/icons/Edit";
+import Delete from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2rem",
-    "& .MuiTableBody-root": {
+    "& .MuiTable-root": {
+      "& th.MuiTableCell-root.MuiTableCell-head:not(:nth-child(2)), td.MuiTableCell-root.MuiTableCell-body:not(:nth-child(2))":
+        {
+          textAlign: "center",
+        },
+      "& .MuiTableRow-root": {
+        height: "6rem",
+        "& .MuiCheckbox-root": {
+          height: "inherit",
+        },
+      },
       "& .MuiTableRow-root:last-child": {
-        "& .MuiTableCell-root": {
+        "& .MuiTableCell-root:not(th)": {
           borderBottom: 0,
         },
       },
@@ -38,25 +50,24 @@ const useStyles = makeStyles((theme) => ({
     animation: "$spin 1s linear infinite",
   },
   ellipsis: {
-    maxWidth: "50rem",
+    width: "2rem",
+    maxWidth: "30rem",
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
   },
 }));
 
-
-
 const UploadedBooks = () => {
   const classes = useStyles();
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState([]);
 
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const {
     data: { username },
   } = useSelector((state) => state.user);
-  
+
   const [{ isLoading, error, response }, doFetch] = useFetch(
     `http://localhost:5000/books/${username}`
   );
@@ -71,7 +82,7 @@ const UploadedBooks = () => {
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
-  
+
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
@@ -81,13 +92,12 @@ const UploadedBooks = () => {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
-  
+
     setSelected(newSelected);
   };
-  console.log(response)
 
   return (
     <div>
@@ -96,10 +106,12 @@ const UploadedBooks = () => {
         <Table>
           <colgroup>
             <col style={{ width: "5%" }} />
-            <col style={{ width: "60%" }} />
-            <col style={{ width: "10%" }} />
+            <col style={{ width: "20%" }} />
             <col style={{ width: "5%" }} />
-            <col style={{ width: "15%" }} />
+            <col style={{ width: "5%" }} />
+            <col style={{ width: "5%" }} />
+            <col style={{ width: "5%" }} />
+            <col style={{ width: "5%" }} />
           </colgroup>
           <TableHead>
             <TableRow>
@@ -108,54 +120,67 @@ const UploadedBooks = () => {
               <TableCell>Pages</TableCell>
               <TableCell>Size</TableCell>
               <TableCell>Date</TableCell>
+              <TableCell>Edit</TableCell>
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {isLoading && (
               <TableRow>
-                <TableCell colSpan={5} style={{borderBottom: 0}}>
+                <TableCell colSpan={5} style={{ borderBottom: 0 }}>
                   <Box display="flex" justifyContent="center">
                     <div className={classes.loading}></div>
                   </Box>
                 </TableCell>
               </TableRow>
             )}
-            {response?.uploadedBooks ? (response?.uploadedBooks?.map((uploadedBook) => (
-              <TableRow
-                key={uploadedBook._id}
-                hover
-                role="checkbox"
-                tabIndex={-1}
-                >
-                
-                <Checkbox
-                  // checked={isItemSelected}
-                />
-                {/* {categories.map(
-                  (category) => (
-                    <TableCell
-                      key={category}
-                    >
-                      <Typography className={classes.ellipsis}>{uploadedBook[category]}</Typography>
+
+            {response?.uploadedBooks
+              ? response?.uploadedBooks?.map((uploadedBook) => (
+                  <TableRow
+                    key={uploadedBook._id}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                  >
+                    <Box
+                      component={Checkbox}
+                      style={{
+                        display: "grid",
+                        placeContent: "center",
+                        width: "100%",
+                      }}
+                      // checked={isItemSelected}
+                    />
+                    <TableCell className={classes.ellipsis}>
+                      {uploadedBook.title.slice(0, -4)}
                     </TableCell>
-                  ) */}
-                <TableCell className={classes.ellipsis}>
-                  {uploadedBook.title.slice(0, -4)}
-                </TableCell>
-                <TableCell className={classes.ellipsis}>
-                  {uploadedBook.pages}
-                </TableCell>
-                <TableCell className={classes.ellipsis}>{`${(
-                  uploadedBook?.size / 1048576
-                ).toFixed(2)}MB`}</TableCell>
-                <TableCell className={classes.ellipsis}>
-                  {new Date(uploadedBook?.date).toLocaleString().split(", ")[0]}
-                </TableCell>
-              </TableRow>
-            ))): null}
-            {response?.uploadedBooks.length == 0 ? (
+                    <TableCell className={classes.ellipsis}>
+                      {uploadedBook.pages}
+                    </TableCell>
+                    <TableCell className={classes.ellipsis}>{`${(
+                      uploadedBook?.size / 1048576
+                    ).toFixed(2)}MB`}</TableCell>
+                    <TableCell className={classes.ellipsis}>
+                      {
+                        new Date(uploadedBook?.date)
+                          .toLocaleString()
+                          .split(", ")[0]
+                      }
+                    </TableCell>
+                    <TableCell>
+                      <Edit />
+                    </TableCell>
+                    <TableCell>
+                      <Delete />
+                    </TableCell>
+                  </TableRow>
+                ))
+              : null}
+            {response?.uploadedBooks.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} style={{borderBottom: 0}}>
+                <TableCell colSpan={5} style={{ borderBottom: 0 }}>
                   <Box display="flex" justifyContent="center">
                     <h1>You haven't uploaded any books yet</h1>
                   </Box>

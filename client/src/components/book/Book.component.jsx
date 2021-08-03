@@ -7,15 +7,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import useStyles from "./Book.styles";
-import { Link, useRouteMatch } from "react-router-dom";
-import CloudDownloadOutlinedIcon from '@material-ui/icons/CloudDownloadOutlined';
-import { purple } from '@material-ui/core/colors'
+import { Link } from "react-router-dom";
+import CloudDownloadOutlinedIcon from "@material-ui/icons/CloudDownloadOutlined";
+import { purple } from "@material-ui/core/colors";
 
 const Book = (props) => {
   const { hasLink, ...book } = props;
-  console.log(book)
-
-  const { path } = useRouteMatch();
+  console.log(book);
 
   const classes = useStyles();
 
@@ -39,7 +37,7 @@ const Book = (props) => {
             >
               <Link
                 to={{
-                  pathname: `${path}/${book["_id"]}`,
+                  pathname: `/books/${book["_id"]}`,
                   state: {
                     book: { ...book },
                   },
@@ -58,8 +56,14 @@ const Book = (props) => {
               {book.title}
             </Typography>
           )}
-          <a href={book.url} style={{ textDecoration: "none", color: purple["700"] }} download target="_blank" rel="noreferrer">
-            <CloudDownloadOutlinedIcon fontSize="large"/>
+          <a
+            href={book.url}
+            style={{ textDecoration: "none", color: purple["700"] }}
+            download
+            target="_blank"
+            rel="noreferrer"
+          >
+            <CloudDownloadOutlinedIcon fontSize="large" />
           </a>
         </Box>
 

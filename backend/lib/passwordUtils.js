@@ -13,11 +13,11 @@ function genPassword(password) {
 }
 
 function validatePassword(password, hash, salt) {
+  const hashVerify = crypto
+    .pbkdf2Sync(password, salt, 10000, 64, "sha512")
+    .toString("hex");
 
-  const hashVerify = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('hex');
-
-  return hashVerify === hash
-
+  return hashVerify === hash;
 }
 
 module.exports.validatePassword = validatePassword;

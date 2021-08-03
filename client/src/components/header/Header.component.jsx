@@ -1,5 +1,5 @@
 import headerLogo from "../../assets/Investor_Kola_Mock1.png";
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Grid,
   AppBar,
@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import BackspaceIcon from '@material-ui/icons/Backspace';
-import { Redirect } from 'react-router-dom'
+import BackspaceIcon from "@material-ui/icons/Backspace";
+import { Redirect } from "react-router-dom";
 import useStyle from "./Header.styles";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,45 +23,45 @@ const Header = () => {
 
   const user = useSelector((state) => state.user);
 
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
-  const [searchResults, setSearchResults] = useState(null)
+  const [searchResults, setSearchResults] = useState(null);
 
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(actions.userUnload());
-    alert("Signed out successfully")
+    alert("Signed out successfully");
   };
 
-  const handleChange = e => {
-    const value = e.target.value
-    setSearch(value)
-  }
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+  };
 
-  const handleClear = e => {
-    setSearch("")
-  }
+  const handleClear = (e) => {
+    setSearch("");
+  };
 
-  const handleKeyPress = e => {
-    const {name, value} = e.target
-    if(e.keyCode === 13) {
+  const handleKeyPress = (e) => {
+    const { name, value } = e.target;
+    if (e.keyCode === 13) {
       axios({
         url: `http://localhost:5000/book/search`,
         method: "GET",
         params: {
-          [name]: value
+          [name]: value,
         },
-        withCredentials: true
+        withCredentials: true,
       })
-        .then( response => {
-          setSearchResults(response.data)
-          setSearchResults(null)
+        .then((response) => {
+          setSearchResults(response.data);
+          setSearchResults(null);
         })
-        .catch( error => console.log(error))
+        .catch((error) => console.log(error));
     }
-  }
+  };
 
   return (
     <AppBar position="static" className={`${classes.coloring} ${classes.root}`}>
@@ -149,14 +149,16 @@ const Header = () => {
           )}
         </Box>
       </Toolbar>
-      {searchResults && <Redirect
-        to={{
-          pathname: "/book/search",
-          state: {
-            books: searchResults,
-          },
-        }}
-      />}
+      {searchResults && (
+        <Redirect
+          to={{
+            pathname: "/book/search",
+            state: {
+              books: searchResults,
+            },
+          }}
+        />
+      )}
     </AppBar>
   );
 };
