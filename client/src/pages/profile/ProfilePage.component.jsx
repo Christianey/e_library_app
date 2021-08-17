@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Box, makeStyles, Typography, Tabs, Tab } from "@material-ui/core";
-import UploadBook from "../../components/uploadBook/uploadBook.component.";
+import UploadBook from "../../components/uploadBook/uploadBook.component";
 import UploadedBooks from "../../components/uploadedBooks/uploadedBooks.component";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import EnhancedTable from "../../components/tableTest/enhancedTable.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +66,7 @@ const ProfilePage = () => {
       <Tabs value={value} onChange={handleChange} indicatorColor="primary">
         <Tab label="Books Uploaded" {...a11yProps(0)} />
         <Tab label="Upload Book" {...a11yProps(1)} />
+        <Tab label="Enhanced Table" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={value} index={0}>
@@ -73,6 +75,10 @@ const ProfilePage = () => {
 
       <TabPanel value={value} index={1}>
         <UploadBook />
+      </TabPanel>
+
+      <TabPanel value={value} index={2}>
+        <EnhancedTable />
       </TabPanel>
     </div>
   );

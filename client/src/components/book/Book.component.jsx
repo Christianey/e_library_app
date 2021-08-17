@@ -29,12 +29,12 @@ const Book = (props) => {
       />
       <Box component={CardContent} className={classes.cardContent}>
         <Box display="flex" justifyContent="space-between">
-          {hasLink ? (
-            <Typography
-              component="h4"
-              variant="h4"
-              className={classes.typography}
-            >
+          <Typography
+            component="h4"
+            variant="h4"
+            className={classes.typography}
+          >
+            {hasLink ? (
               <Link
                 to={{
                   pathname: `/books/${book["_id"]}`,
@@ -46,16 +46,10 @@ const Book = (props) => {
               >
                 {book.title}
               </Link>
-            </Typography>
-          ) : (
-            <Typography
-              component="h4"
-              variant="h4"
-              className={classes.typography}
-            >
-              {book.title}
-            </Typography>
-          )}
+            ) : (
+              book.title
+            )}
+          </Typography>
           <a
             href={book.url}
             style={{ textDecoration: "none", color: purple["700"] }}

@@ -4,7 +4,6 @@ const User = require("../models/user");
 require("dotenv").config();
 const debug = require("debug")(process.env.DEBUG);
 const jwt = require("jsonwebtoken");
-const { verifyJWT } = require("../lib/verifyJWT");
 
 router.post("/user/register", registerUser);
 router.post("/user/login", loginUser);
@@ -56,11 +55,20 @@ async function registerUser(req, res, next) {
       salt,
     });
 
-    debug(user);
-
     const newUser = await user.save();
 
-    res.json(newUser);
+    const token = jwt.sign(
+      { id: newUser._id, username: newUser._doc.username },
+      process.env.SECRET,
+      {
+        expiresIn: "5d",
+      }
+    );
+    res.json({
+      auth: true,
+      token,
+      user: { ...newUser._doc, salt: null, hash: null },
+    });
   } catch (error) {
     next(error);
   }

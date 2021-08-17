@@ -31,8 +31,6 @@ function after(req, res, next) {
 async function searchBooks(req, res, next) {
   const query = req.query.search;
 
-  debug(query);
-
   const books = await Book.find({ title: { $regex: query, $options: "i" } });
 
   res.send(books);
@@ -117,8 +115,9 @@ async function getUserBooks(req, res, next) {
         .status(403)
         .json("You are not permitted to view this resource");
 
-    const user = await User.findById(id).populate("uploadedBooks");
-    debug(user);
+    const user = await User.findById(id)
+      .select("-salt -hash")
+      .populate("uploadedBooks");
 
     res.json(user);
   } catch (error) {
@@ -142,9 +141,6 @@ async function listBooks(req, res) {
     "-salt -hash -uploadedBooks"
   );
   res.json(books);
-
-  debug(books);
-  // res.json(books)
 }
 
 module.exports = router;

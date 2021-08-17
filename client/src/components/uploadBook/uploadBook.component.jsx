@@ -1,5 +1,14 @@
 import React, { useState, useRef } from "react";
-import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
+import {
+  FormControlLabel,
+  Box,
+  FormLabel,
+  Grid,
+  InputLabel,
+  makeStyles,
+  Paper,
+  StepLabel,
+} from "@material-ui/core";
 import Controls from "../controls/Controls.component";
 import axios from "axios";
 
@@ -15,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1.8),
   },
   "@keyframes spin": {
-    "to": {
+    to: {
       transform: "rotate(360deg)",
-    }
+    },
   },
   loading: {
     border: `.2rem solid ${theme.palette.primary.main}`,
@@ -26,7 +35,27 @@ const useStyles = makeStyles((theme) => ({
     width: "2rem",
     height: "2rem",
     animation: "$spin 1s linear infinite",
-  }
+  },
+  inputFile: {
+    opacity: 0,
+    zIndex: -1,
+    position: "absolute",
+    top: "3rem",
+    left: "0",
+  },
+  inputLabelButton: {
+    backgroundColor: `#e2e2e2`,
+    borderRadius: `${theme.spacing(0.5)}px`,
+    marginTop: "1rem",
+    padding: "2rem",
+    width: "13rem",
+    height: "5rem",
+    color: "#2f2f2f",
+    fontWeight: "bold",
+    cursor: "pointer",
+    display: "inline-grid",
+    placeContent: "center",
+  },
 }));
 
 const initialValues = {
@@ -34,25 +63,25 @@ const initialValues = {
   author: "",
   faculty: "",
   department: "",
-  file: null
+  file: null,
 };
 
 const UploadBook = () => {
   const ref = useRef();
   const [values, setValues] = useState(initialValues);
-  const [isLoading, setIsLoading] = useState(false)
-  console.log(values.title)
-
+  const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
 
   const handleInputChange = (e) => {
     e.preventDefault();
 
+    if (!e.target.files[0]) return;
+
     setValues({
       ...values,
-      title: values.title.length 
-        ? values.title 
-        : e.target.files[0].name.split('.')[0],
+      title: values.title.length
+        ? values.title
+        : e.target.files[0].name.split(".")[0],
       file: e.target.files[0],
     });
   };
@@ -70,15 +99,13 @@ const UploadBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { file , ...data } = values;
+    const { file, ...data } = values;
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("data", data);
 
-    const formData = new FormData()
-    formData.append("file", file)
-    formData.append("data", data)
-
-    console.log(values)
     if (ref.current.reportValidity()) {
-      setIsLoading(true)
+      setIsLoading(true);
       axios({
         url: "http://localhost:5000/book/upload",
         method: "POST",
@@ -86,16 +113,16 @@ const UploadBook = () => {
           "x-access-token": `Bearer ${localStorage.getItem("token")}`,
         },
         withCredentials: true,
-        data: formData
+        data: formData,
       })
-        .then( response => {
-          setIsLoading(false)
-          ref.current.reset()
-          setValues({...initialValues})
-          alert("Book Uploaded")
+        .then((response) => {
+          setIsLoading(false);
+          ref.current.reset();
+          setValues({ ...initialValues });
+          alert("Book Uploaded");
         })
-        .catch( error => console.log("Error: ", error.response) )
-        .finally( () => setIsLoading(false) )
+        .catch((error) => console.log("Error: ", error.response))
+        .finally(() => setIsLoading(false));
     }
   };
 
@@ -139,12 +166,34 @@ const UploadBook = () => {
               fullWidth
             />
           </Grid>
-          <input type="file" name="file" onChange={handleInputChange} />
+          <div className="input-wrapper" style={{ position: "relative" }}>
+            <label htmlFor="input-file" className={classes.inputLabelButton}>
+              Browse File...
+            </label>
+            <span style={{ marginLeft: "2rem", fontStyle: "italic" }}>
+              {values.file?.name || "No file selected"}
+            </span>
+            <input
+              type="file"
+              className={classes.inputFile}
+              name="file"
+              id="input-file"
+              onChange={handleInputChange}
+              accept="application/pdf"
+              required
+            />
+          </div>
         </Box>
       </Box>
       <Box component={Grid} container justifyContent="center" marginTop={3}>
-        <Controls.Button  onClick={handleSubmit}>
-          {isLoading ? <div className={classes.loading}></div> : "SUBMIT"}
+        <Controls.Button onClick={handleSubmit}>
+          SUBMIT{" "}
+          {isLoading && (
+            <div
+              className={classes.loading}
+              style={{ marginLeft: "1rem" }}
+            ></div>
+          )}
         </Controls.Button>
       </Box>
     </form>

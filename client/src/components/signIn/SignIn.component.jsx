@@ -1,9 +1,4 @@
-import {
-  Box,
-  Grid,
-  makeStyles,
-  Paper
-} from "@material-ui/core";
+import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
 import React, { useState, useRef } from "react";
 import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router";
@@ -20,22 +15,22 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
     margin: theme.spacing(1.8),
-  }
+  },
 }));
 
 const initialValues = {
   username: "",
-  password: ""
+  password: "",
 };
 
 const SignIn = () => {
-  const user = useSelector( state => {
-    return state.user
-  })
-  
-  const dispatch = useDispatch()
+  const user = useSelector((state) => {
+    return state.user;
+  });
 
-  const ref = useRef()
+  const dispatch = useDispatch();
+
+  const ref = useRef();
   const [values, setValues] = useState(initialValues);
 
   const classes = useStyles(initialValues);
@@ -51,47 +46,53 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const { username, password } = values;
-    const data = {
-      username,
-      password
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    if(ref.current.reportValidity()) {
-     dispatch(loadUserAsync(data))
+    if (ref.current.reportValidity()) {
+      dispatch(loadUserAsync(values));
     }
-  }
+  };
 
-  if(user.data) {
-    return <Redirect to="/me" />
+  if (user.data) {
+    return <Redirect to="/me" />;
   }
 
   return (
-    <form action="POST" className={classes.root} ref={ref} autoComplete="false" onSubmit={handleSubmit}>
+    <form
+      action="POST"
+      className={classes.root}
+      ref={ref}
+      autoComplete="false"
+      onSubmit={handleSubmit}
+    >
       <Box component={Paper} className={classes.paper}>
         <Box component={Grid} container>
-            <Grid item xs={12}>
-              <Controls.Textfield
-                type="text"
-                name="username"
-                label="Userame"
-                onChange={handleChange}
-                value={values.username}
-                required
-                fullWidth
-              />
+          {user?.error?.data?.message && (
+            <span style={{ margin: "0 auto", color: "red" }}>
+              {user.error.data.message}
+            </span>
+          )}
+          <Grid item xs={12}>
             <Controls.Textfield
-                type="password"
-                name="password"
-                label="Password"
-                onChange={handleChange}
-                value={values.password}
-                placeholder="Please, input password"
-                required
-              />
-            </Grid>
+              type="text"
+              name="username"
+              label="Userame"
+              onChange={handleChange}
+              value={values.username}
+              required
+              fullWidth
+            />
+            <Controls.Textfield
+              type="password"
+              name="password"
+              label="Password"
+              onChange={handleChange}
+              value={values.password}
+              placeholder="Please, input password"
+              required
+            />
+          </Grid>
         </Box>
       </Box>
       <Box component={Grid} container justifyContent="center" marginTop={3}>

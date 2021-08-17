@@ -10,14 +10,17 @@ import {
   Box,
   Paper,
   Checkbox,
+  Typography,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import Edit from "@material-ui/icons/Edit";
 import Delete from "@material-ui/icons/Delete";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2rem",
+    paddingBottom: "4rem",
     "& .MuiTable-root": {
       "& th.MuiTableCell-root.MuiTableCell-head:not(:nth-child(2)), td.MuiTableCell-root.MuiTableCell-body:not(:nth-child(2))":
         {
@@ -73,6 +76,13 @@ const UploadedBooks = () => {
   );
 
   useEffect(() => {
+    const authToken = localStorage.getItem("token");
+    if (authToken) {
+      axios.defaults.headers.common["x-access-token"] = `Bearer ${authToken}`;
+    } else {
+      delete axios.defaults.headers.common["x-access-token"];
+    }
+
     doFetch({
       method: "GET",
       withCredentials: true,
@@ -101,11 +111,10 @@ const UploadedBooks = () => {
 
   return (
     <div>
-      <h1>Uploaded Books</h1>
       <Paper className={classes.root}>
         <Table>
           <colgroup>
-            <col style={{ width: "5%" }} />
+            <col style={{ width: "1%" }} />
             <col style={{ width: "20%" }} />
             <col style={{ width: "5%" }} />
             <col style={{ width: "5%" }} />
@@ -128,7 +137,7 @@ const UploadedBooks = () => {
           <TableBody>
             {isLoading && (
               <TableRow>
-                <TableCell colSpan={5} style={{ borderBottom: 0 }}>
+                <TableCell colSpan={7} style={{ borderBottom: 0 }}>
                   <Box display="flex" justifyContent="center">
                     <div className={classes.loading}></div>
                   </Box>
@@ -144,13 +153,15 @@ const UploadedBooks = () => {
                     role="checkbox"
                     tabIndex={-1}
                   >
-                    <Box
-                      component={Checkbox}
+                    <Checkbox
                       style={{
-                        display: "grid",
-                        placeContent: "center",
-                        width: "100%",
+                        // display: "flex",
+                        alignItems: "center",
+                        // width: "100%",
                       }}
+                      disableRipple
+                      disableHoverRipple
+                      disableTouchRipple
                       // checked={isItemSelected}
                     />
                     <TableCell className={classes.ellipsis}>
@@ -180,7 +191,7 @@ const UploadedBooks = () => {
               : null}
             {response?.uploadedBooks.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} style={{ borderBottom: 0 }}>
+                <TableCell colSpan={7} style={{ borderBottom: 0 }}>
                   <Box display="flex" justifyContent="center">
                     <h1>You haven't uploaded any books yet</h1>
                   </Box>
