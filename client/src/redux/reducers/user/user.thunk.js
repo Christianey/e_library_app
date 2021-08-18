@@ -5,7 +5,7 @@ export const loadUserAsync = (data) => (dispatch) => {
   dispatch(actions.userLoadStart());
 
   axios({
-    url: "http://localhost:5000/user/login",
+    url: "https://unibook-server.herokuapp.com/user/login",
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const registerUserAsync = (data) => (dispatch) => {
   dispatch(actions.userLoadStart());
 
   axios({
-    url: "http://localhost:5000/user/register",
+    url: "https://unibook-server.herokuapp.com/user/register",
     method: "POST",
     headers: {
       "Content-Type": "application/json",

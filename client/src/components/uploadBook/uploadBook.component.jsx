@@ -107,7 +107,7 @@ const UploadBook = () => {
     if (ref.current.reportValidity()) {
       setIsLoading(true);
       axios({
-        url: "http://localhost:5000/book/upload",
+        url: "https://unibook-server.herokuapp.com/book/upload",
         method: "POST",
         headers: {
           "x-access-token": `Bearer ${localStorage.getItem("token")}`,

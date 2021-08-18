@@ -72,7 +72,7 @@ const UploadedBooks = () => {
   } = useSelector((state) => state.user);
 
   const [{ isLoading, error, response }, doFetch] = useFetch(
-    `http://localhost:5000/books/${username}`
+    `https://unibook-server.herokuapp.com/books/${username}`
   );
 
   useEffect(() => {

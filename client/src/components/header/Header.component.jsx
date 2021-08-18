@@ -1,4 +1,4 @@
-import headerLogo from "../../assets/Investor_Kola_Mock1.png";
+import headerLogo from "../../assets/UniBook.png";
 import { useState } from "react";
 import {
   Grid,
@@ -48,7 +48,7 @@ const Header = () => {
     const { name, value } = e.target;
     if (e.keyCode === 13) {
       axios({
-        url: `http://localhost:5000/book/search`,
+        url: `https://unibook-server.herokuapp.com/book/search`,
         method: "GET",
         params: {
           [name]: value,
