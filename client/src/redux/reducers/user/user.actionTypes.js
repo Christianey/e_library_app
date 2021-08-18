@@ -4,6 +4,7 @@ const actionTypes = {
   USER_LOAD_ERROR: "USER_LOAD_ERROR",
   USER_UNLOAD: "USER_UNLOAD",
   USER_LOAD: "USER_LOAD",
+  USER_CLEAR_ERROR: "USER_CLEAR_ERROR",
 };
 
 export default actionTypes;

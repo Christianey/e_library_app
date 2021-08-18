@@ -1,9 +1,10 @@
 import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router-dom";
 import { registerUserAsync } from "../../redux/reducers/user/user.thunk";
+import actionTypes from "../../redux/reducers/user/user.actionTypes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,10 @@ const SignUp = () => {
 
   const ref = useRef();
   const classes = useStyles(initialValues);
+
+  useEffect(() => {
+    if (user?.error) dispatch({ type: actionTypes.USER_CLEAR_ERROR });
+  });
 
   const handleChange = (e) => {
     const { value, name } = e.target;

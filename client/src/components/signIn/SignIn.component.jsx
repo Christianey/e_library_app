@@ -1,9 +1,10 @@
 import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserAsync } from "../../redux/reducers/user/user.thunk";
+import actionTypes from "../../redux/reducers/user/user.actionTypes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +35,9 @@ const SignIn = () => {
   const [values, setValues] = useState(initialValues);
 
   const classes = useStyles(initialValues);
+  useEffect(() => {
+    if(user?.error) dispatch({ type: actionTypes.USER_CLEAR_ERROR });
+  });
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -77,7 +81,7 @@ const SignIn = () => {
             <Controls.Textfield
               type="text"
               name="username"
-              label="Userame"
+              label="Username"
               onChange={handleChange}
               value={values.username}
               required

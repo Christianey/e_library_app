@@ -1,7 +1,9 @@
 import axios from "axios";
 import actions from "./user.actions";
+import actionTypes from "./user.actionTypes";
 
 export const loadUserAsync = (data) => (dispatch) => {
+  dispatch({ type: actionTypes.USER_CLEAR_ERROR });
   dispatch(actions.userLoadStart());
 
   axios({
@@ -26,6 +28,7 @@ export const loadUserAsync = (data) => (dispatch) => {
 };
 
 export const registerUserAsync = (data) => (dispatch) => {
+  dispatch({ type: actionTypes.USER_CLEAR_ERROR });
   dispatch(actions.userLoadStart());
 
   axios({
