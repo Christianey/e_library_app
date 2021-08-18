@@ -43,6 +43,12 @@ async function registerUser(req, res, next) {
     const { username, displayName, faculty, department, level, password } =
       req.body;
 
+    const userExists = await User.find({ username });
+    if (userExists)
+      return res
+        .status(400)
+        .json({ message: "Username already exists, please try another one" });
+
     const { hash, salt } = genPassword(password);
 
     const user = new User({

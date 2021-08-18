@@ -1,5 +1,5 @@
 const express = require("express");
-const connection = require("./config/database");
+const database = require("./config/database");
 const helmet = require("helmet");
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
@@ -11,11 +11,12 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://unibook.netlify.app",
     methods: ["GET", "POST"],
     credentials: true,
   })
 );
+cors();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
@@ -34,12 +35,12 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-connection.then(() => debug("Database Connected!"));
+database.then(() => debug("Database Connected!"));
 
 app.use(bookRouter);
 app.use(userRouter);
 app.use(function (error, req, res) {
-  if (error) res.status(404).json({ message: `Na 404 cause am: ${err}` });
+  if (error) res.status(404).json({ message: `Caused by error 404: ${err}` });
 });
 app.use(errorController);
 

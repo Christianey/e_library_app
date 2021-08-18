@@ -13,7 +13,6 @@ import { purple } from "@material-ui/core/colors";
 
 const Book = (props) => {
   const { hasLink, ...book } = props;
-  console.log(book);
 
   const classes = useStyles();
 
