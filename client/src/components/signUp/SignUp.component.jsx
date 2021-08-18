@@ -67,6 +67,11 @@ const SignUp = () => {
     >
       <Box component={Paper} className={classes.paper}>
         <Grid container>
+          {user?.error?.data?.message && (
+            <span style={{ margin: "0 auto", color: "red" }}>
+              {user.error.data.message}
+            </span>
+          )}
           <Grid item xs={12}>
             <Controls.Textfield
               type="text"

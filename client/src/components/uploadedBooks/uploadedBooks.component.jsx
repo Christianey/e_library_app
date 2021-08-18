@@ -10,7 +10,6 @@ import {
   Box,
   Paper,
   Checkbox,
-  Typography,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import Edit from "@material-ui/icons/Edit";

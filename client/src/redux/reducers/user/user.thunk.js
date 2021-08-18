@@ -16,7 +16,6 @@ export const loadUserAsync = (data) => (dispatch) => {
     withCredentials: true,
   })
     .then((response) => {
-      console.log(response);
       localStorage.setItem("token", response.data.token);
       dispatch(actions.userLoadSuccess(response.data.user));
     })
@@ -41,7 +40,6 @@ export const registerUserAsync = (data) => (dispatch) => {
     withCredentials: true,
   })
     .then((response) => {
-      console.log(response);
       localStorage.setItem("token", response.data.token);
       dispatch(actions.userLoadSuccess(response.data.user));
     })

@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "cloudinary-react": "^1.7.0"
+    "cloudinary-react": "^1.7.0",
+    "netlify-cli": "^6.5.8"
   }
 }

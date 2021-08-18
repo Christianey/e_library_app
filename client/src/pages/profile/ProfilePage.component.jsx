@@ -77,9 +77,9 @@ const ProfilePage = () => {
         <UploadBook />
       </TabPanel>
 
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
         <EnhancedTable />
-      </TabPanel>
+      </TabPanel> */}
     </div>
   );
 };
