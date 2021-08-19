@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router-dom";
 import { registerUserAsync } from "../../redux/reducers/user/user.thunk";
-import actionTypes from "../../redux/reducers/user/user.actionTypes";
+import userActionTypes from "../../redux/reducers/user/user.actionTypes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +19,19 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       margin: `${theme.spacing(1.8)}px ${theme.spacing(3)}rem`,
     },
+  },
+  "@keyframes spin": {
+    to: {
+      transform: "rotate(360deg)",
+    },
+  },
+  loading: {
+    border: `.2rem solid ${theme.palette.primary.main}`,
+    borderTopColor: "white",
+    borderRadius: "50%",
+    width: "2rem",
+    height: "2rem",
+    animation: "$spin 1s linear infinite",
   },
 }));
 
@@ -41,8 +54,10 @@ const SignUp = () => {
   const classes = useStyles(initialValues);
 
   useEffect(() => {
-    if (user?.error) dispatch({ type: actionTypes.USER_CLEAR_ERROR });
-  });
+    return () => {
+      dispatch({ type: userActionTypes.USER_CLEAR_ERROR });
+    };
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -72,12 +87,19 @@ const SignUp = () => {
     >
       <Box component={Paper} className={classes.paper}>
         <Grid container>
-          {user?.error?.data?.message && (
-            <span style={{ margin: "0 auto", color: "red" }}>
-              {user.error.data.message}
-            </span>
-          )}
           <Grid item xs={12}>
+            {user?.error?.data?.message && (
+              <span
+                style={{
+                  marginBottom: "1rem",
+                  color: "red",
+                  display: "block",
+                  textAlign: "center",
+                }}
+              >
+                {user.error.data.message}
+              </span>
+            )}
             <Controls.Textfield
               type="text"
               name="username"
@@ -147,6 +169,12 @@ const SignUp = () => {
       <Box component={Grid} container justifyContent="center" marginTop={3}>
         <Controls.Button type="submit" onClick={handleSubmit}>
           SUBMIT
+          {user.isLoading && (
+            <div
+              className={classes.loading}
+              style={{ marginLeft: "1rem" }}
+            ></div>
+          )}
         </Controls.Button>
       </Box>
     </form>

@@ -4,7 +4,7 @@ import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUserAsync } from "../../redux/reducers/user/user.thunk";
-import actionTypes from "../../redux/reducers/user/user.actionTypes";
+import userActionTypes from "../../redux/reducers/user/user.actionTypes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +16,19 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
     margin: theme.spacing(1.8),
+  },
+  "@keyframes spin": {
+    to: {
+      transform: "rotate(360deg)",
+    },
+  },
+  loading: {
+    border: `.2rem solid ${theme.palette.primary.main}`,
+    borderTopColor: "white",
+    borderRadius: "50%",
+    width: "2rem",
+    height: "2rem",
+    animation: "$spin 1s linear infinite",
   },
 }));
 
@@ -35,9 +48,12 @@ const SignIn = () => {
   const [values, setValues] = useState(initialValues);
 
   const classes = useStyles(initialValues);
+
   useEffect(() => {
-    if(user?.error) dispatch({ type: actionTypes.USER_CLEAR_ERROR });
-  });
+    return () => {
+      dispatch({ type: userActionTypes.USER_CLEAR_ERROR });
+    };
+  }, [dispatch]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -72,12 +88,19 @@ const SignIn = () => {
     >
       <Box component={Paper} className={classes.paper}>
         <Box component={Grid} container>
-          {user?.error?.data?.message && (
-            <span style={{ margin: "0 auto", color: "red" }}>
-              {user.error.data.message}
-            </span>
-          )}
           <Grid item xs={12}>
+            {user?.error?.data?.message && (
+              <span
+                style={{
+                  marginBottom: "1rem",
+                  color: "red",
+                  display: "block",
+                  textAlign: "center",
+                }}
+              >
+                {user.error.data.message}
+              </span>
+            )}
             <Controls.Textfield
               type="text"
               name="username"
@@ -100,7 +123,15 @@ const SignIn = () => {
         </Box>
       </Box>
       <Box component={Grid} container justifyContent="center" marginTop={3}>
-        <Controls.Button type="submit">LOG IN</Controls.Button>
+        <Controls.Button type="submit">
+          LOG IN{" "}
+          {user.isLoading && (
+            <div
+              className={classes.loading}
+              style={{ marginLeft: "1rem" }}
+            ></div>
+          )}
+        </Controls.Button>
       </Box>
     </form>
   );
