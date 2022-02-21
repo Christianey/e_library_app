@@ -63,6 +63,7 @@ const Header = () => {
         container
         className={classes.container}
         wrap="wrap"
+        py={[2, 0, 0, 0]}
       >
         <div
           className="logo-wrapper"
@@ -77,7 +78,7 @@ const Header = () => {
           </Box>
         </div>
 
-        <Grid item sm={12} md={6}>
+        <Grid item width={["100%", "50%", "50%", "50%"]} order={[3, 0, 0, 0]}>
           <InputBase
             className={classes.search}
             placeholder="Search for Book"

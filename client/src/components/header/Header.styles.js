@@ -1,17 +1,13 @@
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { purple } from "@mui/material/colors";
 
 const useStyle = makeStyles((theme) => ({
-  root: {
-    padding: "0 4rem",
-  },
   coloring: {
     backgroundColor: purple["700"],
   },
   container: {
     justifyContent: "space-between",
     alignItems: "center",
-    flexWrap: "nowrap",
   },
   button: {
     zIndex: 1,
@@ -38,13 +34,13 @@ const useStyle = makeStyles((theme) => ({
       cursor: "pointer",
 
       "& span": {
-        color: theme.palette.primary.main
-      }
+        color: theme.palette.primary.main,
+      },
     },
     "&:hover::before": {
       transformOrigin: "center left",
       transform: "scaleX(1)",
-    }
+    },
   },
   textButton: {
     color: "white",
@@ -59,7 +55,7 @@ const useStyle = makeStyles((theme) => ({
     marginRight: "1rem",
   },
   backspaceIcon: {
-    cursor: "pointer"
+    cursor: "pointer",
   },
   headerLogo: {
     minWidth: "100%",
