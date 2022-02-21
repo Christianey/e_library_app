@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Box, Typography, Tabs, Tab } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import UploadBook from "../../components/uploadBook/uploadBook.component";
 import UploadedBooks from "../../components/uploadedBooks/uploadedBooks.component";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import EnhancedTable from "../../components/tableTest/enhancedTable.component";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,10 +76,6 @@ const ProfilePage = () => {
       <TabPanel value={value} index={1}>
         <UploadBook />
       </TabPanel>
-
-      {/* <TabPanel value={value} index={2}>
-        <EnhancedTable />
-      </TabPanel> */}
     </div>
   );
 };

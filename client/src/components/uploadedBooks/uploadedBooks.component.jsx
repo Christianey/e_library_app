@@ -1,7 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useFetch from "../../useFetch.hook";
-import { Table, TableBody, TableCell, TableRow, TableHead, Box, Paper, Checkbox } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableRow,
+  TableHead,
+  Box,
+  Paper,
+  Checkbox,
+} from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 import { useSelector } from "react-redux";
 import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
@@ -53,15 +62,12 @@ const useStyles = makeStyles((theme) => ({
 
 const UploadedBooks = () => {
   const classes = useStyles();
-  const [selected, setSelected] = useState([]);
-
-  const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const {
     data: { username },
   } = useSelector((state) => state.user);
 
-  const [{ isLoading, error, response }, doFetch] = useFetch(
+  const [{ isLoading, response }, doFetch] = useFetch(
     `https://unibook-server.herokuapp.com/books/${username}`
   );
 
@@ -78,26 +84,6 @@ const UploadedBooks = () => {
       withCredentials: true,
     });
   }, [doFetch]);
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
 
   return (
     <div>

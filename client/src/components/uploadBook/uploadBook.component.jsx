@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import { FormControlLabel, Box, FormLabel, Grid, InputLabel, Paper, StepLabel } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import { Box, Grid, Paper } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 import Controls from "../controls/Controls.component";
 import axios from "axios";
 

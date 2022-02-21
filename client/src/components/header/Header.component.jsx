@@ -1,13 +1,6 @@
 import headerLogo from "../../assets/UniBook.png";
 import { useState } from "react";
-import {
-  Grid,
-  AppBar,
-  InputBase,
-  Toolbar,
-  Button,
-  Box,
-} from "@mui/material";
+import { Grid, AppBar, InputBase, Toolbar, Button, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import BackspaceIcon from "@mui/icons-material/Backspace";
@@ -65,7 +58,12 @@ const Header = () => {
 
   return (
     <AppBar position="static" className={`${classes.coloring} ${classes.root}`}>
-      <Toolbar component={Grid} container className={classes.container} wrap>
+      <Toolbar
+        component={Grid}
+        container
+        className={classes.container}
+        wrap="wrap"
+      >
         <div
           className="logo-wrapper"
           style={{ width: "3rem", display: "flex" }}
