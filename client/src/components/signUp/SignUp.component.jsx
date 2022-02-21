@@ -1,5 +1,5 @@
 import { Box, Grid, Paper } from "@mui/material";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import React, { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Controls from "../controls/Controls.component";
@@ -12,13 +12,6 @@ const useStyles = makeStyles((theme) => ({
     "& .MuiFormControl-root": {
       width: "100%",
       marginBottom: theme.spacing(1.6),
-    },
-  },
-  paper: {
-    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
-    margin: theme.spacing(1.8),
-    [theme.breakpoints.up("md")]: {
-      margin: `${theme.spacing(1.8)} ${theme.spacing(3)}rem`,
     },
   },
   "@keyframes spin": {
@@ -86,7 +79,12 @@ const SignUp = () => {
       className={classes.root}
       autoComplete="false"
     >
-      <Box component={Paper} className={classes.paper}>
+      <Box
+        component={Paper}
+        className={classes.paper}
+        px={[".5rem", "1rem", "1rem", "1rem"]}
+        maxWidth={"50rem"}
+      >
         <Grid container>
           <Grid item xs={12}>
             {user?.error?.data?.message && (
