@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  Grid,
 } from "@mui/material";
 import useStyles from "./Book.styles";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ const Book = (props) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card component={Grid} className={classes.root} width="100%">
       <CardMedia
         className={classes.img}
         image={`${book.url
@@ -26,11 +27,16 @@ const Book = (props) => {
           .replace("pdf", "jpg")
           .replace(/\s/g, ".")}`}
       />
-      <Box component={CardContent} className={classes.cardContent}>
+      <Box
+        component={CardContent}
+        className={classes.cardContent}
+        gap={"1.5rem"}
+      >
         <Box display="flex" justifyContent="space-between">
           <Typography
             component="h4"
             variant="h4"
+            fontSize={["1.3rem", "2rem", "2rem", "2rem"]}
             className={classes.typography}
           >
             {hasLink ? (
@@ -60,7 +66,13 @@ const Book = (props) => {
           </a>
         </Box>
 
-        <Box>
+        <Box
+          sx={{
+            "& .MuiTypography-root ": {
+              fontSize: ["1rem", "1rem ", "2rem ", "2rem "],
+            },
+          }}
+        >
           <Box display="flex" justifyContent="space-between">
             <Typography variant="subtitle1" color="textSecondary">
               No. of Pages: {book.pages}
