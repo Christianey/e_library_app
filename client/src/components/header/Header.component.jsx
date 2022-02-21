@@ -7,10 +7,10 @@ import {
   Toolbar,
   Button,
   Box,
-} from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import BackspaceIcon from "@material-ui/icons/Backspace";
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import BackspaceIcon from "@mui/icons-material/Backspace";
 import { Redirect } from "react-router-dom";
 import useStyle from "./Header.styles";
 import { Link } from "react-router-dom";
@@ -65,89 +65,85 @@ const Header = () => {
 
   return (
     <AppBar position="static" className={`${classes.coloring} ${classes.root}`}>
-      <Toolbar>
-        <Box component={Grid} container className={classes.container}>
-          <div>
-            <div
-              className="logo-wrapper"
-              style={{ width: "3rem", display: "flex" }}
-            >
-              <Box component={Link} to="/books" display="flex" width="3rem">
-                <img
-                  src={headerLogo}
-                  alt="Header Logo"
-                  className={classes.headerLogo}
-                />
-              </Box>
-            </div>
-          </div>
-
-          <Grid item md={6}>
-            <InputBase
-              className={`${classes.search}`}
-              placeholder="Search for Book"
-              fullWidth
-              onKeyDown={handleKeyPress}
-              onChange={handleChange}
-              inputProps={{
-                name: "search",
-                value: search,
-              }}
-              startAdornment={
-                <SearchIcon fontSize="small" className={classes.searchIcon} />
-              }
-              endAdornment={
-                <BackspaceIcon
-                  fontSize="small"
-                  className={classes.backspaceIcon}
-                  onClick={handleClear}
-                />
-              }
+      <Toolbar component={Grid} container className={classes.container} wrap>
+        <div
+          className="logo-wrapper"
+          style={{ width: "3rem", display: "flex" }}
+        >
+          <Box component={Link} to="/books" display="flex" width="3rem">
+            <img
+              src={headerLogo}
+              alt="Header Logo"
+              className={classes.headerLogo}
             />
-          </Grid>
+          </Box>
+        </div>
 
-          {user.data ? (
-            <Box display="flex" alignItems="center">
-              <Link
-                to="/me"
-                style={{ color: "currentColor", textDecoration: "none" }}
-              >
-                <AccountCircle fontSize="large" />
-              </Link>
+        <Grid item sm={12} md={6}>
+          <InputBase
+            className={classes.search}
+            placeholder="Search for Book"
+            fullWidth
+            onKeyDown={handleKeyPress}
+            onChange={handleChange}
+            inputProps={{
+              name: "search",
+              value: search,
+            }}
+            startAdornment={
+              <SearchIcon fontSize="small" className={classes.searchIcon} />
+            }
+            endAdornment={
+              <BackspaceIcon
+                fontSize="small"
+                className={classes.backspaceIcon}
+                onClick={handleClear}
+              />
+            }
+          />
+        </Grid>
+
+        {user.data ? (
+          <Box display="flex" alignItems="center">
+            <Link
+              to="/me"
+              style={{ color: "currentColor", textDecoration: "none" }}
+            >
+              <AccountCircle fontSize="large" />
+            </Link>
+            <Button
+              className={classes.textButton}
+              variant="text"
+              size="large"
+              onClick={handleClick}
+            >
+              SIGN OUT
+            </Button>
+          </Box>
+        ) : (
+          <Box>
+            <Link
+              to="/sign-in"
+              style={{ color: "currentColor", textDecoration: "none" }}
+            >
               <Button
                 className={classes.textButton}
                 variant="text"
                 size="large"
-                onClick={handleClick}
               >
-                SIGN OUT
+                SIGN IN
               </Button>
-            </Box>
-          ) : (
-            <Box>
-              <Link
-                to="/sign-in"
-                style={{ color: "currentColor", textDecoration: "none" }}
-              >
-                <Button
-                  className={classes.textButton}
-                  variant="text"
-                  size="large"
-                >
-                  SIGN IN
-                </Button>
-              </Link>
-              <Link
-                to="/sign-up"
-                style={{ color: "currentColor", textDecoration: "none" }}
-              >
-                <Button className={classes.button} variant="outlined">
-                  SIGN UP
-                </Button>
-              </Link>
-            </Box>
-          )}
-        </Box>
+            </Link>
+            <Link
+              to="/sign-up"
+              style={{ color: "currentColor", textDecoration: "none" }}
+            >
+              <Button className={classes.button} variant="outlined">
+                SIGN UP
+              </Button>
+            </Link>
+          </Box>
+        )}
       </Toolbar>
       {searchResults && (
         <Redirect

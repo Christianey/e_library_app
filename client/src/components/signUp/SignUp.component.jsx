@@ -1,4 +1,5 @@
-import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
+import { Box, Grid, Paper } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useRef, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Controls from "../controls/Controls.component";
@@ -14,10 +15,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
+    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
     margin: theme.spacing(1.8),
     [theme.breakpoints.up("md")]: {
-      margin: `${theme.spacing(1.8)}px ${theme.spacing(3)}rem`,
+      margin: `${theme.spacing(1.8)} ${theme.spacing(3)}rem`,
     },
   },
   "@keyframes spin": {

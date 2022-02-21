@@ -1,4 +1,5 @@
-import { Box, Grid, makeStyles, Paper } from "@material-ui/core";
+import { Box, Grid, Paper } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import React, { useState, useRef, useEffect } from "react";
 import Controls from "../controls/Controls.component";
 import { Redirect } from "react-router";
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
+    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
     margin: theme.spacing(1.8),
   },
   "@keyframes spin": {

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Box, makeStyles, Typography, Tabs, Tab } from "@material-ui/core";
+import { Box, Typography, Tabs, Tab } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import UploadBook from "../../components/uploadBook/uploadBook.component";
 import UploadedBooks from "../../components/uploadedBooks/uploadedBooks.component";
 import { useSelector } from "react-redux";
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
+    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
     margin: theme.spacing(1.8),
   },
 }));

@@ -1,6 +1,6 @@
 import React from "react";
 import useStyles from './SignInSignUpPage.styles.js'
-import { Box, Grid, Typography } from "@material-ui/core";
+import { Box, Grid, Typography } from "@mui/material";
 import SignUp from "../../components/signUp/SignUp.component";
 import SignIn from "../../components/signIn/SignIn.component";
 

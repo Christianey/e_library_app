@@ -1,14 +1,6 @@
 import React, { useState, useRef } from "react";
-import {
-  FormControlLabel,
-  Box,
-  FormLabel,
-  Grid,
-  InputLabel,
-  makeStyles,
-  Paper,
-  StepLabel,
-} from "@material-ui/core";
+import { FormControlLabel, Box, FormLabel, Grid, InputLabel, Paper, StepLabel } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import Controls from "../controls/Controls.component";
 import axios from "axios";
 
@@ -20,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    padding: `${theme.spacing(4)}px ${theme.spacing(5)}px`,
+    padding: `${theme.spacing(4)} ${theme.spacing(5)}`,
     margin: theme.spacing(1.8),
   },
   "@keyframes spin": {
@@ -45,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputLabelButton: {
     backgroundColor: `#e2e2e2`,
-    borderRadius: `${theme.spacing(0.5)}px`,
+    borderRadius: theme.spacing(0.5),
     marginTop: "1rem",
     padding: "2rem",
     width: "13rem",

@@ -1,19 +1,10 @@
 import { useEffect, useState } from "react";
 import useFetch from "../../useFetch.hook";
-import {
-  makeStyles,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  TableHead,
-  Box,
-  Paper,
-  Checkbox,
-} from "@material-ui/core";
+import { Table, TableBody, TableCell, TableRow, TableHead, Box, Paper, Checkbox } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { useSelector } from "react-redux";
-import Edit from "@material-ui/icons/Edit";
-import Delete from "@material-ui/icons/Delete";
+import Edit from "@mui/icons-material/Edit";
+import Delete from "@mui/icons-material/Delete";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({

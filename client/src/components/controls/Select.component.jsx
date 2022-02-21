@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, Select as MuiSelect, MenuItem } from "@material-ui/core";
+import { FormControl, InputLabel, Select as MuiSelect, MenuItem } from "@mui/material";
 import React from "react";
 
 const Select = (props) => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box } from "@material-ui/core";
+import { Box } from "@mui/material";
 import useFetch from "../../useFetch.hook";
 import useStyles from "./BookList.styles.js";
 const { default: Book } = require("../book/Book.component");

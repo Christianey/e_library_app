@@ -5,11 +5,11 @@ import {
   CardContent,
   CardMedia,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import useStyles from "./Book.styles";
 import { Link } from "react-router-dom";
-import CloudDownloadOutlinedIcon from "@material-ui/icons/CloudDownloadOutlined";
-import { purple } from "@material-ui/core/colors";
+import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
+import { purple } from "@mui/material/colors";
 
 const Book = (props) => {
   const { hasLink, ...book } = props;
